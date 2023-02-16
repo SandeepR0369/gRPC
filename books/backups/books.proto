@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package proto;
+import "google/protobuf/empty.proto";
+option go_package = "books/pb/v1";
+
+service BooksService {
+    rpc AddBook (AddRequest) returns (AddResponse);
+    rpc UpdateBook (AddRequest) returns (AddResponse);
+    rpc GetAllBooks (google.protobuf.Empty) returns (GetAllBooksResponse);
+    rpc GetBookByID (IDRequest) returns (IDResponse);
+    rpc GetBookByTitle (TitleRequest) returns (TitleResponse);
+    rpc GetBookByAuthor (AuthorRequest) returns (AuthorResponse);
+}
+
+message AddRequest {
+    int32 ID = 1;
+    string Title = 2;
+    string Author = 3;
+}
+
+message AddResponse {
+    int32 ID = 1;
+    string Title = 2;
+    string Author = 3;
+}
+
+message IDRequest {
+    int32 ID = 1; 
+}
+
+message TitleRequest {
+    string Title = 1;
+}
+
+message AuthorRequest {
+    string Author = 1;
+}
+
+message IDResponse {
+    int32 ID = 1;
+    string Title = 2;
+    string Author = 3;
+}
+
+message TitleResponse {
+    int32 ID = 1;
+    string Title = 2;
+    string Author = 3;
+}
+
+message AuthorResponse {
+    int32 ID = 1;
+    string Title = 2;
+    string Author = 3;
+}
+
+message GetAllBooksResponse{
+    repeated AddResponse Books = 1;
+}

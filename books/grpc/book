@@ -1,0 +1,19 @@
+// package grpc
+
+// import (
+// 	v1 "books/pb/v1"
+// 	"context"
+// )
+
+// type server struct {
+// 	books []*v1.AddRequest
+// }
+
+// func (S *server) AddBook(ctx context.Context, Addrequest *v1.AddRequest) (*v1.AddResponse, error) {
+// 	S.books = append(S.books, Addrequest)
+// 	return &v1.AddResponse{
+// 		ID:     Addrequest.ID,
+// 		Title:  Addrequest.Title,
+// 		Author: Addrequest.Author,
+// 	}, nil
+// }

@@ -1,0 +1,15 @@
+{
+    "ArbitraryData": {
+      "vin": "HUL9VPU5754T87BPK",
+      "generation": "21MM",
+      "familySharing": true,
+      "paymentMethodId": null,
+      "region": "US",
+      "waiver": false,
+      "vehicleStatus": "SUBSCRIBED",
+      "can300EndDate": "2021-08-26",
+      "brand": "Subaru",
+      "serviceConnectEndDate": "2021-08-26",
+      "termsAcceptanceDate": "2021-07-26T16:12:04Z"
+    }
+  }
