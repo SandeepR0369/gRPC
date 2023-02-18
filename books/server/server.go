@@ -66,6 +66,74 @@ func (S *BooksService) AddBook(ctx context.Context, Addrequest *v1.AddRequest) (
 		Author: Addrequest.Author}, nil
 }
 
+func (s *BooksService) AddBooks(ctx context.Context, req *v1.MultipleBooksRequest) (*v1.MultipleBooksResponse, error) {
+	var respList []*v1.AddResponse
+	for _, addReq := range req.Books {
+		for _, b := range s.books {
+			if addReq.ID == b.ID {
+				return &v1.MultipleBooksResponse{}, errors.New(("ID already exists"))
+			}
+		}
+		s.books = append(s.books, addReq)
+		respList = append(respList, &v1.AddResponse{
+			ID:     addReq.ID,
+			Title:  addReq.Title,
+			Author: addReq.Author,
+		})
+	}
+	return &v1.MultipleBooksResponse{Books: respList}, nil
+}
+
+/*
+func (s *BooksService) AddBooks(ctx context.Context, req *[]v1.AddRequest) (*v1.AddResponse, error) {
+	for _, addReq := range *req {
+		for _, b := range s.books {
+			if addReq.ID == b.ID {
+				return &v1.AddResponse{}, errors.New(("ID already exists"))
+			}
+		}
+		s.books = append(s.books, &addReq)
+		for _, v := range s.books {
+			if v.ID != addReq.ID {
+				return &v1.AddResponse{
+					ID:     addReq.ID,
+					Title:  addReq.Title,
+					Author: addReq.Author,
+				}, nil
+			}
+		}
+		return &v1.AddResponse{
+			ID:     addReq.ID,
+			Title:  addReq.Title,
+			Author: addReq.Author,
+		}, nil
+	}
+	return &v1.AddResponse{}, nil
+}
+*/
+/*
+	func (S *BooksService) AddBooks(ctx context.Context, Addrequest *[]v1.AddRequest) (*v1.AddResponse, error) {
+		for _, b := range S.books {
+			if Addrequest.ID == b.ID {
+				return &v1.AddResponse{}, errors.New(("ID already exists"))
+			}
+		}
+		S.books = append(S.books, Addrequest)
+		for _, v := range S.books {
+			if v.ID != Addrequest.ID {
+				return &v1.AddResponse{
+					ID:     Addrequest.ID,
+					Title:  Addrequest.Title,
+					Author: Addrequest.Author,
+				}, nil
+			}
+		}
+		return &v1.AddResponse{
+			ID:     Addrequest.ID,
+			Title:  Addrequest.Title,
+			Author: Addrequest.Author}, nil
+	}
+*/
 func (S *BooksService) UpdateBook(ctx context.Context, Addrequest *v1.AddRequest) (*v1.UpdateResponse, error) {
 
 	for _, v := range S.books {
